@@ -39,8 +39,6 @@ def shouldPantsBeWorn(latitude, longitude, location = None):
     if location is None:
         location = geocoder.google([latitude, longitude], method="reverse")
 
-    print("location: " + str(location))
-    print("hi")
     detailsHTML = "<p>Right now, it's " + removePeriodAtEndOfString(forecast.minutely().summary.lower()) + " in " + location.city + ".</p>"
     detailsHTML += "<p>The temperature is currently " + str(round(temperature)) + "&deg;.</p>"
 
