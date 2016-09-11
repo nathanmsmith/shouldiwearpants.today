@@ -3,10 +3,11 @@ import geocoder
 import requests
 import forecastio
 import random
+import os
 
 app = Flask(__name__)
 
-forecast_key = open('forecastio_key.txt').read()
+forecastio_key = os.environ.get('FORECASTIO_API_KEY')
 
 @app.route('/pant_results_user')
 def shouldPantsShouldBeWornFromInput():
@@ -18,7 +19,6 @@ def shouldPantsShouldBeWornFromInput():
     print(location)
     print("latitude: " + str(location.lat))
     print("latitude: " + str(location.lng))
-    #print(location.latitude + ", " + location.longitude)
 
     return shouldPantsBeWorn(latitude=location.lat, longitude=location.lng, location=location)
 
@@ -33,7 +33,7 @@ def shouldPantsShouldBeWornFromLocation():
 
 
 def shouldPantsBeWorn(latitude, longitude, location = None):
-    forecast = forecastio.load_forecast(forecast_key, latitude, longitude)
+    forecast = forecastio.load_forecast(forecastio_key, latitude, longitude)
     temperature = forecast.currently().temperature
 
     if location is None:
