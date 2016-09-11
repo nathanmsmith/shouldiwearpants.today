@@ -47,7 +47,7 @@ def shouldPantsBeWorn(latitude, longitude, location = None):
         detailsHTML += "<p>It's too hot for pants.</p>"
     else:  # pants should be worn
         answer=random_line("splashes/positive.txt")
-        detailsHTML += "<p>You really need to keep your legs warm.</p>"
+        detailsHTML += "<p>You should really think about keeping your legs warm.</p>"
 
     return jsonify(answer=answer, details=detailsHTML)
 
