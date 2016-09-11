@@ -1,0 +1,1 @@
+web: gunicorn pants:app --log-file=-
