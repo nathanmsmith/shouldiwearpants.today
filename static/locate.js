@@ -26,6 +26,7 @@ $(document).ready(function() {
 areDetailsDown = false;
 
 function displayLoading() {
+  $('#location').css("padding-top", "");
   if (areDetailsDown) {
     $("#details").slideUp();
   }
@@ -57,6 +58,7 @@ function displayError() {
   $('#loading').hide();
   $('#why').hide();
   $('#subtext').hide();
+  $('#location').css("padding-top", "4em");
   clearInput()
 }
 
@@ -88,15 +90,8 @@ function showError(error) {
         case error.PERMISSION_DENIED:
             string = "We need to know where you are to check the weather! Please enter your location below.";
             break;
-        case error.POSITION_UNAVAILABLE:
+        default:
             string = "Well this is awkward... Something went wrong! Please try again.";
-            break;
-        case error.TIMEOUT:
-            string = "Well this is awkward... Something went wrong! Please try again.";
-            break;
-        case error.UNKNOWN_ERROR:
-            string = "Well this is awkward... Something went wrong!Please try again.";
-            break;
     }
 
     displayError();
