@@ -49,6 +49,17 @@ function displayResults(data) {
   clearInput()
 }
 
+function displayError() {
+  if (areDetailsDown) {
+    $("#details").slideUp();
+  }
+  $('#answer').hide();
+  $('#loading').hide();
+  $('#why').hide();
+  $('#subtext').hide();
+  clearInput()
+}
+
 function clearInput() {
   $('input[type=text]').val("");
   $('input[type=text]').blur();
@@ -88,6 +99,6 @@ function showError(error) {
             break;
     }
 
-    $('#answer').text(string);
-    $('#answer').css("font-size", "2rem");
+    displayError();
+    alert(string);
 }
