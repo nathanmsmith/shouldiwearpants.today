@@ -63,7 +63,7 @@ body {
     font-weight: bold;
     margin: 0px auto;
     margin-top: 150px;
-    width: 350px;
+    /*width: 350px;*/
 }
 
 #subtext, a {
