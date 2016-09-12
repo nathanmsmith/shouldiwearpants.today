@@ -36,6 +36,11 @@ def shouldPantsBeWorn(latitude, longitude, location = None):
     forecast = forecastio.load_forecast(forecastio_key, latitude, longitude)
     temperature = forecast.currently().temperature
 
+    if forecast.json['flags']['units'] == "us":
+        unit = "F"
+    else:
+        unit = "C"
+
     if location is None:
         location = geocoder.google([latitude, longitude], method="reverse")
 
@@ -44,7 +49,10 @@ def shouldPantsBeWorn(latitude, longitude, location = None):
         detailsHTML += "<p>Right now, it's " + removePeriodAtEndOfString(forecast.minutely().summary.lower()) + " in " + location.city + ".</p>"
     else:
         detailsHTML += "<p>Right now, the forecast for " + location.city + " is: " + forecast.currently().summary + ".</p>"
-    detailsHTML += "<p>The temperature is currently " + str(round(temperature)) + "&deg;.</p>"
+    detailsHTML += "<p>The temperature is currently " + str(round(temperature)) + "&deg;" + unit + ".</p>"
+
+    if unit == "C":
+        temperature = (temperature*9/5)+32
 
     if temperature > 75:  # pants should not be worn
         answer = random_line("splashes/negative.txt")
