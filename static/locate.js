@@ -71,7 +71,9 @@ function determineWhetherPantsShouldBeWornFromUserInput(input) {
   displayLoading();
 		$.getJSON($SCRIPT_ROOT + '/pant_results_user', {
 				input: input
-		}, displayResults);
+		}, displayResults).fail(function(jqxhr, textStatus, error) {
+      showError(error);
+});
 }
 
 function determineWhetherPantsShouldBeWornFromLocation(position) {
@@ -79,7 +81,9 @@ function determineWhetherPantsShouldBeWornFromLocation(position) {
     $.getJSON($SCRIPT_ROOT + '/pant_results_location', {
         longitude: position.coords.longitude,
         latitude: position.coords.latitude
-    }, displayResults);
+    }, displayResults).fail(function(error) {
+      showError(error);
+    });
 }
 
 function showError(error) {
@@ -87,7 +91,7 @@ function showError(error) {
     var string = "";
 
     switch (error.code) {
-        case error.PERMISSION_DENIED:
+        case 1:
             string = "We need to know where you are to check the weather! Please enter your location below.";
             break;
         default:
