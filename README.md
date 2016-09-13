@@ -10,7 +10,7 @@ This website would not be possible without the work of much smarter people than 
 * [jQuery Geolocation](https://github.com/manuelbieh/jQuery-Geolocation)
 * [Forecast.io Python Wrapper](https://github.com/ZeevG/python-forecast.io)
 
-It's hosted on [DigitalOcean](https://m.do.co/c/b490b79de21c) (Note: Shameless referral link) and uses [Dokku](https://m.do.co/c/b490b79de21c) for easy deployment.
+It's hosted on [DigitalOcean](https://m.do.co/c/b490b79de21c) (Note: Shameless referral link) and uses [Dokku](http://dokku.viewdocs.io/dokku/) for easy deployment.
 
 # License
 All code not otherwise marked is available under the [MIT License](LICENSE).
