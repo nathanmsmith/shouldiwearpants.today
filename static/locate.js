@@ -4,10 +4,9 @@ $(document).ready(function() {
         error: showError
     });
 
-    $('input[type=text]').keyup(function(e) {
-        if (e.keyCode == 13) {
-          determineWhetherPantsShouldBeWornFromUserInput($(this).val());
-        }
+    $("form").submit(function(event) {
+      event.preventDefault();
+      determineWhetherPantsShouldBeWornFromUserInput($("#cityzip").val());
     });
 
     $('#why').click(function() {
