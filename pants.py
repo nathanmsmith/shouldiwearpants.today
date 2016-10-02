@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, render_template, request
 import geocoder
-import requests
 import forecastio
 import random
 import os
