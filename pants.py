@@ -1,5 +1,6 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, json, jsonify, render_template, request
 import geocoder
+import requests
 import forecastio
 import random
 import os
@@ -27,10 +28,13 @@ def shouldPantsShouldBeWornFromInput():
 
 @app.route('/pant_results_location')
 def shouldPantsShouldBeWornFromLocation():
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
+    ip = request.remote_addr
+    data = json.loads(requests.get('http://freegeoip.net/json/' + ip).text)
 
-    return shouldPantsBeWorn(latitude=latitude, longitude=longitude)
+    print(data)
+
+    return shouldPantsBeWorn(latitude=data['latitude'],
+                             longitude=data['longitude'])
 
 
 def shouldPantsBeWorn(latitude, longitude, location=None):
@@ -52,9 +56,11 @@ def shouldPantsBeWorn(latitude, longitude, location=None):
         detailsHTML = ("<p>Right now, it's "
                        + removePeriodAtEndOfString(minutelySummary.lower())
                        + " in " + location.city + ".</p>")
-    else:
+    elif location.city is not None:
         detailsHTML = ("<p>Right now, the forecast for " + location.city
                        + " is: " + forecast.currently().summary + ".</p>")
+    else:
+        detailsHTML = ("<p>Right now, the forecast is " + forecast.currently().summary + ".</p>")
     detailsHTML += ("<p>The temperature is currently "
                     + str(round(temperature)) + "&deg;" + unit + ".</p>")
 

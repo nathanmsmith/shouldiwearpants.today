@@ -1,8 +1,5 @@
 $(document).ready(function() {
-    $.geolocation.get({
-        win: determineWhetherPantsShouldBeWornFromLocation,
-        error: showError
-    });
+    determineWhetherPantsShouldBeWornFromLocation();
 
     $("form").submit(function(event) {
       event.preventDefault();
@@ -15,10 +12,7 @@ $(document).ready(function() {
     });
 
     $('#locate').click(function() {
-        $.geolocation.get({
-            win: determineWhetherPantsShouldBeWornFromLocation,
-            error: showError
-        });
+        determineWhetherPantsShouldBeWornFromLocation();
     });
 });
 
@@ -75,12 +69,9 @@ function determineWhetherPantsShouldBeWornFromUserInput(input) {
 });
 }
 
-function determineWhetherPantsShouldBeWornFromLocation(position) {
+function determineWhetherPantsShouldBeWornFromLocation() {
   displayLoading();
-    $.getJSON($SCRIPT_ROOT + '/pant_results_location', {
-        longitude: position.coords.longitude,
-        latitude: position.coords.latitude
-    }, displayResults).fail(function(error) {
+    $.getJSON($SCRIPT_ROOT + '/pant_results_location', {}, displayResults).fail(function(error) {
       showError(error);
     });
 }
