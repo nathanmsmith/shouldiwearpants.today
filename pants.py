@@ -4,8 +4,10 @@ import requests
 import forecastio
 import random
 import os
+from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 forecastio_key = os.environ.get('FORECASTIO_API_KEY')
 
