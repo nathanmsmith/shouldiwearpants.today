@@ -1,19 +1,22 @@
-# Should I Wear Pants Today?
-The answer to the most pressing question you'll ever face, now in the form of a website easily accessible from any internet connected device.
+# shouldiwearpants.today
 
-# Technologies
-This website would not be possible without the work of much smarter people than me who created all of the libraries and features that are utilized.
+## Specification
 
-* [Flask](http://flask.pocoo.org)
-* [Python Geocoder](https://github.com/DenisCarriere/geocoder)
-* [jQuery](https://jquery.org)
-* [jQuery Geolocation](https://github.com/manuelbieh/jQuery-Geolocation)
-* [Forecast.io Python Wrapper](https://github.com/ZeevG/python-forecast.io)
+- Home Page
+- Login Page
+- Sign up page
+- Add Pants Page
+- Plan a trip page
+- What are my friends wearing?
+- Pants recommendations
 
-It's hosted on [DigitalOcean](https://m.do.co/c/b490b79de21c) (Note: Shameless referral link) and uses [Dokku](http://dokku.viewdocs.io/dokku/) for easy deployment.
+### Database
 
-# License
-All code not otherwise marked is available under the [MIT License](LICENSE).
+- Users
+  - have many friends
+  - have many pants
+  - have many trips
 
-# Contributors
-* [Nathan Smith](https://github.com/nathunsmitty)
+### API Endpoints
+
+- 
